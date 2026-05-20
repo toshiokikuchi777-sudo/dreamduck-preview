@@ -140,6 +140,16 @@
       font-size: 11px;
       color: var(--muted);
       letter-spacing: 0.18em;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .ver .size {
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.15em;
     }
 
     .note {
@@ -188,9 +198,16 @@
         environment-image="neutral"
         ar
         ar-modes="webxr scene-viewer quick-look"
-        camera-orbit="35deg 75deg 1.4m"
-        min-camera-orbit="auto auto 0.4m"
-        max-camera-orbit="auto auto 3m">
+        ar-scale="fixed"
+        ar-placement="floor"
+        bounds="tight"
+        camera-orbit="-25deg 80deg auto"
+        field-of-view="auto"
+        min-field-of-view="10deg"
+        max-field-of-view="45deg"
+        min-camera-orbit="auto auto auto"
+        max-camera-orbit="auto auto auto"
+        interaction-prompt="none">
         <div class="loading" slot="poster">LOADING&hellip;</div>
       </model-viewer>
     </div>
@@ -199,7 +216,10 @@
   </main>
 
   <footer>
-    <div class="ver">VERSION 01 &nbsp;/&nbsp; 2026.05.20</div>
+    <div class="ver">
+      VERSION 01 &nbsp;/&nbsp; 2026.05.20
+      <span class="size">SIZE&nbsp; W60 &times; D60 &times; H60 mm</span>
+    </div>
     <div class="note">お気づきの点は <b>ご返信</b> または <b>LINE</b> にて。修正反映後、新URLでお送りします。</div>
   </footer>
 </body>
