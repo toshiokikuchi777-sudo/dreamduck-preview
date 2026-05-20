@@ -118,6 +118,47 @@
 
     model-viewer[loaded] + .loading { display: none; }
 
+    .controls {
+      margin-top: 18px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .controls button {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 9px 16px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      font-family: inherit;
+      font-weight: 300;
+      border-radius: 2px;
+      min-width: 70px;
+    }
+
+    .controls button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .controls button.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      font-weight: 500;
+    }
+
+    .controls .sep {
+      width: 1px;
+      background: var(--line);
+      margin: 4px 6px;
+    }
+
     .hint {
       margin-top: 14px;
       font-size: 11px;
@@ -212,6 +253,17 @@
       </model-viewer>
     </div>
 
+    <div class="controls" id="controls">
+      <button data-orbit="0deg 90deg auto">正面</button>
+      <button data-orbit="-90deg 90deg auto">左</button>
+      <button data-orbit="90deg 90deg auto">右</button>
+      <button data-orbit="180deg 90deg auto">後ろ</button>
+      <button data-orbit="0deg 0deg auto">上</button>
+      <button data-orbit="0deg 180deg auto">下／裏</button>
+      <span class="sep"></span>
+      <button data-action="auto" class="active">自動</button>
+    </div>
+
     <div class="hint">マウス / タッチで回転・ズーム&emsp;|&emsp;スマホは右下アイコンでAR表示（Android）</div>
   </main>
 
@@ -222,5 +274,26 @@
     </div>
     <div class="note">お気づきの点は <b>ご返信</b> または <b>LINE</b> にて。修正反映後、新URLでお送りします。</div>
   </footer>
+
+  <script>
+    const mv = document.querySelector('model-viewer');
+    const buttons = document.querySelectorAll('#controls button');
+    const DEFAULT_ORBIT = '-25deg 80deg auto';
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (btn.dataset.action === 'auto') {
+          mv.cameraOrbit = DEFAULT_ORBIT;
+          mv.autoRotate = true;
+        } else {
+          mv.autoRotate = false;
+          mv.cameraOrbit = btn.dataset.orbit;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
