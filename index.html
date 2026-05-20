@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>DREAMDUCK / 形状確認 v01</title>
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: #141414;
+      --line: #2a2a2a;
+      --text: #f5f5f5;
+      --muted: #8a8a8a;
+      --accent: #f6c946;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .meta {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      position: relative;
+    }
+
+    .title-block {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .title-block h1 {
+      font-size: 28px;
+      font-weight: 200;
+      letter-spacing: 0.08em;
+    }
+
+    .title-block .sub {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+    }
+
+    .viewer-wrap {
+      width: 100%;
+      max-width: 920px;
+      aspect-ratio: 4 / 3;
+      background: radial-gradient(circle at 50% 40%, #1c1c1c 0%, #0a0a0a 70%);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      --poster-color: transparent;
+    }
+
+    .loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      pointer-events: none;
+    }
+
+    model-viewer[loaded] + .loading { display: none; }
+
+    .hint {
+      margin-top: 14px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-align: center;
+    }
+
+    footer {
+      padding: 18px 32px 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .ver {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.18em;
+    }
+
+    .note {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .note b {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 14px 18px; }
+      main { padding: 16px; }
+      .title-block h1 { font-size: 20px; }
+      footer { padding: 14px 18px 18px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">DREAMDUCK</div>
+    <div class="meta">FORM REVIEW / 2026.05</div>
+  </header>
+
+  <main>
+    <div class="title-block">
+      <h1>形状確認用ビュー</h1>
+      <div class="sub">SCROLL / DRAG / PINCH TO INSPECT</div>
+    </div>
+
+    <div class="viewer-wrap">
+      <model-viewer
+        src="dreamduck-v01.glb"
+        alt="DreamDuck v01 - 形状確認用 3D モデル"
+        camera-controls
+        touch-action="pan-y"
+        auto-rotate
+        auto-rotate-delay="3000"
+        rotation-per-second="20deg"
+        shadow-intensity="1"
+        shadow-softness="0.8"
+        exposure="1.0"
+        environment-image="neutral"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        camera-orbit="35deg 75deg 1.4m"
+        min-camera-orbit="auto auto 0.4m"
+        max-camera-orbit="auto auto 3m">
+        <div class="loading" slot="poster">LOADING&hellip;</div>
+      </model-viewer>
+    </div>
+
+    <div class="hint">マウス / タッチで回転・ズーム&emsp;|&emsp;スマホは右下アイコンでAR表示（Android）</div>
+  </main>
+
+  <footer>
+    <div class="ver">VERSION 01 &nbsp;/&nbsp; 2026.05.20</div>
+    <div class="note">お気づきの点は <b>ご返信</b> または <b>LINE</b> にて。修正反映後、新URLでお送りします。</div>
+  </footer>
+</body>
+</html>
